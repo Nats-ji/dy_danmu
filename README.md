@@ -53,6 +53,34 @@ myChannel.OnChatMessage = OnChatMessage
 myChannel.Connect()
 ```
 
+Threading
+```py
+from threading import Thread
+import dy_danmu as DYDM
+
+def OnChatMessage(data: DYDM.ChatMessage):
+    print(f"Channel:\t{data.common.room_id}")
+    print(f"User:\t{data.user.nick_name}")
+    print(f"Msg:\t{data.content}")
+
+cookies: str = "__ac_nonce=PutYourCookiesStringHere"
+channelId1: str = "1234567890"
+channelId2: str = "2345678901"
+
+myChannel1 = DYDM.Channel(channelId1, cookies)
+myChannel2 = DYDM.Channel(channelId2, cookies)
+myChannel1.OnChatMessage = OnChatMessage
+myChannel2.OnChatMessage = OnChatMessage
+
+Thread(target=myChannel1.Connect).start()
+Thread(target=myChannel2.Connect).start()
+
+input("Press Enter to disconnect..")
+myChannel1.Disconnect()
+myChannel2.Disconnect()
+
+```
+
 ## Compile the Protocol Buffers
 
 This project use [python-betterproto](https://github.com/danielgtaylor/python-betterproto) to compile the proto file.
