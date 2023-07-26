@@ -28,7 +28,6 @@ class Channel:
         self.__hasInfo: bool = False
         self.__ttwid: str = ""
         self.__cookie: str = aCookie
-        self.__isRunning: bool = False
 
         # callbacks
         # OnOpen(clsObj: Channel, ws: WebsocketApp)
@@ -125,14 +124,12 @@ class Channel:
 
         pingPayload = PushFrame(payload_type="hb").SerializeToString()
         self.__ws.run_forever(ping_interval=15, ping_payload=pingPayload, reconnect=5)
-        self.__isRunning = False
 
     def Disconnect(self) -> None:
         self.__ws.close()
-        self.__isRunning = False
 
     def IsRunning(self) -> bool:
-        return self.__isRunning
+        return self.__ws.keep_running
 
     def __callback(self, aCallback: Callable | None, *aArgs) -> None:
         if aCallback:
@@ -142,11 +139,9 @@ class Channel:
                 raise CallbackError(f"Error from callback {aCallback}: {err}")
 
     def __onOpen(self, aWs: websocket.WebSocketApp):
-        self.__isRunning = True
         self.__callback(self.OnOpen, aWs)
 
     def __onClose(self, aWs: websocket.WebSocketApp, aCloseStatusCode: int | None, aCloseMsg: str | None):
-        self.__isRunning = False
         self.__callback(self.OnOpen, aWs, aCloseStatusCode, aCloseMsg)
 
     def __onError(self, aWs: websocket.WebSocketApp, aException: Exception):
