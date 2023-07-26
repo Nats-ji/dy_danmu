@@ -1,4 +1,4 @@
-from lib.douyin import *
+from .lib.douyin import *
 
 
 def EncodeAck(aLogId: int):

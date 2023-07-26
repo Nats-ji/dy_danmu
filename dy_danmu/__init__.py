@@ -6,8 +6,8 @@ import gzip
 from urllib.parse import unquote
 from typing import Callable
 
-from exceptions import *
-from parsemsg import *
+from .exceptions import *
+from .parsemsg import *
 
 
 class Channel:

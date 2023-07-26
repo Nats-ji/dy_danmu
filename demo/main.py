@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
-import __init__ as DYDM
+import dy_danmu as DYDM
 
 def OnChatMessage(data: DYDM.ChatMessage):
     print(f"User:\t{data.user.nick_name}")
