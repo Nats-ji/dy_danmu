@@ -142,7 +142,7 @@ class Channel:
         self.__callback(self.OnOpen, aWs)
 
     def __onClose(self, aWs: websocket.WebSocketApp, aCloseStatusCode: int | None, aCloseMsg: str | None):
-        self.__callback(self.OnOpen, aWs, aCloseStatusCode, aCloseMsg)
+        self.__callback(self.OnClose, aWs, aCloseStatusCode, aCloseMsg)
 
     def __onError(self, aWs: websocket.WebSocketApp, aException: Exception):
         self.__callback(self.OnError, aWs, aException)
