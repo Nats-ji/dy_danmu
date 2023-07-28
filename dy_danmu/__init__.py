@@ -24,6 +24,7 @@ class Channel:
         self.catagory: str = ""
         self.subCatagory: str = ""
 
+        self.__ws: websocket.WebSocketApp | None = None
         self.__wssId: str = ""
         self.__hasInfo: bool = False
         self.__ttwid: str = ""
@@ -129,7 +130,7 @@ class Channel:
         self.__ws.close()
 
     def IsRunning(self) -> bool:
-        return self.__ws.keep_running
+        return False if not self.__ws else self.__ws.keep_running
 
     def __callback(self, aCallback: Callable | None, *aArgs) -> None:
         if aCallback:
@@ -151,7 +152,7 @@ class Channel:
         wssPackage = PushFrame().parse(aData)
         payloadPackage = Response().parse(gzip.decompress(wssPackage.payload))
         if payloadPackage.need_ack:
-            ack = EncodeAck(wssPackage.log_id)
+            ack = EncodeAck(wssPackage.log_id, payloadPackage.internal_ext)
             aWs.send(ack, websocket.ABNF.OPCODE_BINARY)
 
         for msg in payloadPackage.messages_list:

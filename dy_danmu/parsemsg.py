@@ -1,8 +1,8 @@
 from .lib.douyin import *
 
 
-def EncodeAck(aLogId: int):
-    return PushFrame(log_id=aLogId, payload_type='ack').SerializeToString()
+def EncodeAck(aLogId: int, aInternalExt: str):
+    return PushFrame(log_id=aLogId, payload_type='ack', payload=aInternalExt.encode('utf-8')).SerializeToString()
 
 
 def ParseMatchAgainstScoreMessage(aPayload: bytes) -> MatchAgainstScoreMessage:
