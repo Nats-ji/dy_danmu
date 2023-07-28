@@ -1,3 +1,5 @@
+// from https://github.com/YunzhiYike/douyin-live/blob/main/dy.proto
+
 syntax = "proto3";
 
 package douyin;

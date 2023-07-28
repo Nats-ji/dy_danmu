@@ -104,6 +104,6 @@ Feel free to make pull requests.
 
 # Credits
 
-[YunzhiYike/douyin-live](https://github.com/YunzhiYike/douyin-live) for all of the parsing works.
+[YunzhiYike/douyin-live](https://github.com/YunzhiYike/douyin-live) for all the reverse engineering works and `douyin.proto`.
 
-[HaoDong108/DouyinBarrageGrab](https://github.com/HaoDong108/DouyinBarrageGrab) for some of the message class in `dy.proto`.
+[HaoDong108/DouyinBarrageGrab](https://github.com/HaoDong108/DouyinBarrageGrab) for some of the message classes in `douyin.proto`.
