@@ -8,3 +8,5 @@ __pycache__/
 
 # vscode
 .vscode/
+
+dy_danmu/lib/__init__.py

@@ -91,11 +91,11 @@ To compile the proto file, run the following commands.
 # install the compiler
 pip install "betterproto[compiler]"
 # invoke protoc directly
-protoc -I ./proto --python_betterproto_out=lib dy.proto
+protoc -I ./proto --python_betterproto_out=dy_danmu/lib dy.proto
 
 # or invoke protoc via grpcio-tools
 pip install grpcio-tools
-python -m grpc_tools.protoc -I ./proto --python_betterproto_out=lib douyin.proto
+python -m grpc_tools.protoc -I ./proto --python_betterproto_out=dy_danmu/lib douyin.proto
 ```
 
 # Contribute to the code

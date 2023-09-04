@@ -40,8 +40,8 @@ message ChatMessage {
   Image backgroundImage = 5;
   string fullScreenTextColor = 6;
   Image backgroundImageV2 = 7;
-  PublicAreaCommon publicAreaCommon = 8;
-  Image giftImage = 9;
+  PublicAreaCommon publicAreaCommon = 9;
+  Image giftImage = 10;
   uint64 agreeMsgId = 11;
   uint32 priorityLevel = 12;
   LandscapeAreaCommon landscapeAreaCommon = 13;
