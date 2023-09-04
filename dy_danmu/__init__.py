@@ -73,15 +73,15 @@ class Channel:
                 raise Exception("ttwid is empty.")
 
             matches = re.search(
-                r'<script id="RENDER_DATA" type="application/json">(.*?)</script>',
+                r'c:(\[.*?\{.*?\]\}\])\\n',
                 res.text,
             )
             if not matches:
                 raise Exception("Failed to find the embeded data.")
 
-            dataRaw: str = matches.group(1)
-            data: dict = json.loads(unquote(dataRaw))
-            channelInfo = data["app"]["initialState"]["roomStore"]["roomInfo"]
+            dataRaw: str = matches.group(1).replace('\\"', '"').replace('\\\\','\\')
+            data: dict = json.loads(dataRaw)
+            channelInfo = data[3]['state']['roomStore']['roomInfo']
             # check if the channel id valid
             if channelInfo.get("roomId") is None:
                 raise InvalidChannelId("Invalid Channel Id.")
